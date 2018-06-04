@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Task } from '../commons/models/task';
+import { Observable, of } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
@@ -10,8 +11,7 @@ export class TasksService {
     new Task(3, 'temp3', 'temp desc 3', new Date()),
   ];
 
-  editTask: Task = this.tasks[0];
-
+  editTask: Task;
   constructor() { }
 
   getAllTasks(): Task[] {
@@ -28,7 +28,7 @@ export class TasksService {
   }
 
   getEditTask() {
-    return this.editTask;
+    return of(this.editTask);
   }
 
   setEditTask(task: Task) {
