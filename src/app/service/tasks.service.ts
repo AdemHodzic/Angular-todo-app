@@ -40,4 +40,7 @@ export class TasksService {
     return num;
   }
 
+  updateUser() {
+    return this.http.put<Task>(`http://localhost:8080/slim/public/tasks/update/${this.editTask.id}`, this.editTask);
+  }
 }

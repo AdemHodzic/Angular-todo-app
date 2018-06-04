@@ -30,6 +30,8 @@ export class EditComponentComponent implements OnInit {
   edit() {
     this.task.name = this.name;
     this.task.description = this.description;
+    this.taskService.updateUser()
+      .subscribe(data => console.log(data));
     this.taskService.setEditTask(null);
     this.router.navigate(['/']);
   }
