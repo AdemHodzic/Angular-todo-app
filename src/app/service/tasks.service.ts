@@ -1,13 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Task } from '../commons/models/task';
 import { HttpClient } from '@angular/common/http';
-<<<<<<< HEAD
-import { Observable, of } from 'rxjs';
-import { map } from 'rxjs/operators';
 
-=======
-import { tap } from 'rxjs/operators';
->>>>>>> observables
+import { tap, of } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
@@ -19,14 +14,8 @@ export class TasksService {
   ];
 
   editTask: Task;
-<<<<<<< HEAD
   constructor(private http: HttpClient) { }
-=======
-
   api = 'http://localhost:8080/slim/public/tasks';
->>>>>>> observables
-
-  constructor(private http: HttpClient) { }
 
   getAllTasks() {
     return this.http.get<Task[]>(this.api);
