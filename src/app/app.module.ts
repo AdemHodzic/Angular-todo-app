@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { RoutingModule } from './modules/routing/routing.module';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { AddTaskComponent } from './components/add-task/add-task.component';
@@ -20,7 +21,8 @@ import { EditComponentComponent } from './components/edit-component/edit-compone
     BrowserModule,
     FormsModule,
     RouterModule,
-    RoutingModule
+    RoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

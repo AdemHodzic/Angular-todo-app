@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Task } from '../commons/models/task';
+import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
+import { map } from 'rxjs/operators';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -12,7 +15,7 @@ export class TasksService {
   ];
 
   editTask: Task;
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   getAllTasks(): Task[] {
     return this.tasks;
@@ -33,5 +36,17 @@ export class TasksService {
 
   setEditTask(task: Task) {
     this.editTask = task;
+  }
+
+  getAllTasksFromSlim() {
+    /*
+    return this.http.get('http://localhost:8080/slim/public/tasks')
+      .pipe(
+        map(data => {
+          new Task(data.id, data.name, data.description, data.created)
+        })
+      );
+      */
+    return this.http.get<Task[]>('http://localhost:8080/slim/public/tasks');
   }
 }
