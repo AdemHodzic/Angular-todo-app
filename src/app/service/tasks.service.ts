@@ -1,17 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Task } from '../commons/models/task';
 import { HttpClient } from '@angular/common/http';
-
-import { tap, of } from 'rxjs/operators';
+import { of } from 'rxjs';
+import { tap} from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
 export class TasksService {
-  tasks: Task[] = [
-    new Task(1, 'temp1', 'temp desc 1', new Date()),
-    new Task(2, 'temp2', 'temp desc 2', new Date()),
-    new Task(3, 'temp3', 'temp desc 3', new Date()),
-  ];
+
 
   editTask: Task;
   constructor(private http: HttpClient) { }
@@ -37,15 +33,11 @@ export class TasksService {
     this.editTask = task;
   }
 
-  getAllTasksFromSlim() {
-    /*
-    return this.http.get('http://localhost:8080/slim/public/tasks')
-      .pipe(
-        map(data => {
-          new Task(data.id, data.name, data.description, data.created)
-        })
-      );
-      */
-    return this.http.get<Task[]>('http://localhost:8080/slim/public/tasks');
+  getLength() {
+    let num;
+    this.http.get<Task[]>(this.api)
+      .subscribe(data => num = data.length);
+    return num;
   }
+
 }

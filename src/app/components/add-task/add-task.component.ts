@@ -18,12 +18,14 @@ export class AddTaskComponent implements OnInit {
 
   add() {
     if (this.name && this.description) {
-      let id = 6;
+      let id = this.taskService.getLength();
       const task = new Task(id++, this.name, this.description, new Date());
-      console.log(task);
       this.taskService.addTask(task)
         .subscribe(data => console.log(data));
     }
+    this.name = '';
+    this.description = '';
+
   }
 
 }
