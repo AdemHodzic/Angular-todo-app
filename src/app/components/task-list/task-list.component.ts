@@ -10,18 +10,22 @@ import { Router } from '@angular/router';
 })
 export class TaskListComponent implements OnInit {
 
-  tasks: Task[];
+  tasks: Task[] = [];
 
   constructor(
     private taskService: TasksService,
     private router: Router) { }
 
   ngOnInit() {
-    this.tasks = this.taskService.getAllTasks();
+    this.taskService.getAllTasks()
+      .subscribe(data => {
+        data.forEach(task => this.tasks.push(task));
+      });
   }
 
   remove(task: Task) {
-    this.taskService.remove(task);
+    this.taskService.remove(task)
+      .subscribe(data => console.log(data));
   }
 
   edit(task: Task) {
