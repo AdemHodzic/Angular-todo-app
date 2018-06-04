@@ -17,16 +17,15 @@ export class TaskListComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
-    this.taskService.getAllTasksFromSlim()
+    this.taskService.getAllTasks()
       .subscribe(data => {
-        data.forEach(element => {
-          this.tasks.push(element);
-        });
+        data.forEach(task => this.tasks.push(task));
       });
   }
 
   remove(task: Task) {
-    this.taskService.remove(task);
+    this.taskService.remove(task)
+      .subscribe(data => console.log(data));
   }
 
   edit(task: Task) {
