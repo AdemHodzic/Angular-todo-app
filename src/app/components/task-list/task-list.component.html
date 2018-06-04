@@ -14,8 +14,8 @@
       <td>{{ task.name }}</td>
       <td>{{ task.description }}</td>
       <td class="buttons">
-        <button class="btn btn-sm btn-primary">Edit</button>
-        <button class="btn btn-sm btn-danger">Delete</button>
+        <button class="btn btn-sm btn-primary" (click)="edit(task)" routerLink="/edit">Edit</button>
+        <button class="btn btn-sm btn-danger" (click)="remove(task)">Delete</button>
       </td>
     </tr>
   </tbody>
