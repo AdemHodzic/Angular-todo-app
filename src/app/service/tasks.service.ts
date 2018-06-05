@@ -18,11 +18,15 @@ export class TasksService {
   }
 
   addTask(task: Task) {
-    return this.http.post<Task>(`http://localhost:8080/slim/public/tasks/add`, task);
+    return this.http.post<Task[]>(`http://localhost:8080/slim/public/tasks/add`, task);
   }
 
   remove(task: Task) {
-    return this.http.delete<Task>(`http://localhost:8080/slim/public/tasks/delete/${task.id}`);
+    return this.http.delete<Task[]>(`http://localhost:8080/slim/public/tasks/delete/${task.id}`);
+  }
+
+  updateUser() {
+    return this.http.put<Task>(`http://localhost:8080/slim/public/tasks/update/${this.editTask.id}`, this.editTask);
   }
 
   getEditTask() {
@@ -40,7 +44,4 @@ export class TasksService {
     return num;
   }
 
-  updateUser() {
-    return this.http.put<Task>(`http://localhost:8080/slim/public/tasks/update/${this.editTask.id}`, this.editTask);
-  }
 }

@@ -11,7 +11,7 @@ import { Observable, of } from 'rxjs';
 })
 export class TaskListComponent implements OnInit {
 
-  tasks: Observable<Task[]>;
+  tasks: Task[] = [];
 
   constructor(
     private taskService: TasksService,
@@ -19,13 +19,13 @@ export class TaskListComponent implements OnInit {
 
   ngOnInit() {
     this.taskService.getAllTasks()
-      .subscribe(data => this.tasks = of(data) );
+      .subscribe(data => this.tasks = data);
   }
 
   remove(task: Task) {
     this.taskService.remove(task)
       .subscribe(data => {
-        console.log(data);
+        this.tasks = data;
       });
   }
 
