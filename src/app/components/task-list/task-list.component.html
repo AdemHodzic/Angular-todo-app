@@ -1,4 +1,4 @@
-<form class="form" (ngSubmit)="add()">
+<form class="form" >
   <div class="form-group">
     <label for="name">Name: </label>
     <input
@@ -19,7 +19,10 @@
       [(ngModel)]="description"
       required>
   </div>
-  <button class="btn btn-lg btn-success float-right">Add task</button>
+  <button
+    class="btn btn-lg float-right"
+    [ngClass]='color'
+    (click)="clicked()">{{button}} task</button>
 </form>
 
 <h4 class="display-3">Tasks:</h4>
@@ -38,7 +41,7 @@
       <td>{{ task.name }}</td>
       <td>{{ task.description }}</td>
       <td class="buttons">
-        <button class="btn btn-sm btn-primary" (click)="edit(task)" routerLink="/edit">Edit</button>
+        <button class="btn btn-sm btn-primary" (click)="edit(task)">Edit</button>
         <button class="btn btn-sm btn-danger" (click)="remove(task)">Delete</button>
       </td>
     </tr>
