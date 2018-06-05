@@ -21,7 +21,7 @@ export class AddTaskComponent implements OnInit {
       let id = this.taskService.getLength();
       const task = new Task(id++, this.name, this.description, new Date());
       this.taskService.addTask(task)
-        .subscribe(data => console.log(data));
+        .subscribe();
     }
     this.name = '';
     this.description = '';

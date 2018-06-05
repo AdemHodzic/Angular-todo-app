@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Task } from '../commons/models/task';
 import { HttpClient } from '@angular/common/http';
-import { of } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { tap} from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,7 @@ export class TasksService {
   constructor(private http: HttpClient) { }
   api = 'http://localhost:8080/slim/public/tasks';
 
-  getAllTasks() {
+  getAllTasks(): Observable<Task[]> {
     return this.http.get<Task[]>(this.api);
   }
 
