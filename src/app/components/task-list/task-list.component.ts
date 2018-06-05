@@ -48,10 +48,10 @@ export class TaskListComponent implements OnInit {
   }
 
   remove(task: Task) {
+    const index = this.tasks.indexOf(task);
+    this.tasks.splice(index, 1);
     this.taskService.remove(task)
-      .subscribe(data => {
-        this.tasks = data;
-      });
+      .subscribe(data => this.tasks = data);
   }
 
   edit(task: Task) {
@@ -70,20 +70,28 @@ export class TaskListComponent implements OnInit {
   }
 
   private updateTask() {
-    const task = this.taskService.getEditTask();
-    task
+    this.removeTemp();
+    this.taskService.getEditTask()
       .subscribe(data => {
         data.name = this.name;
         data.description = this.description;
         this.taskService.update()
-          .subscribe(elem => console.log(elem));
-      })
-      .unsubscribe();
+          .subscribe(tasks => this.tasks = tasks);
+      });
     this.toggle();
     this.name = '';
     this.description = '';
 
 
+  }
+
+  // Removes task we are editring to trigger animation
+  removeTemp() {
+    this.taskService.getEditTask()
+      .subscribe(task => {
+        const index = this.tasks.indexOf(task);
+        this.tasks.splice(index, 1);
+      });
   }
 
   private add() {
