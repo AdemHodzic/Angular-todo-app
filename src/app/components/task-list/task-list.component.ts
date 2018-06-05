@@ -25,7 +25,9 @@ export class TaskListComponent implements OnInit {
 
   remove(task: Task) {
     this.taskService.remove(task)
-      .subscribe(data => console.log(data));
+      .subscribe(data => {
+        console.log(data);
+      });
   }
 
   edit(task: Task) {

@@ -21,13 +21,8 @@ import { EditComponentComponent } from './components/edit-component/edit-compone
     BrowserModule,
     FormsModule,
     RouterModule,
-<<<<<<< HEAD
-    RoutingModule,
-    HttpClientModule
-=======
     HttpClientModule,
     RoutingModule
->>>>>>> observables
   ],
   providers: [],
   bootstrap: [AppComponent]
