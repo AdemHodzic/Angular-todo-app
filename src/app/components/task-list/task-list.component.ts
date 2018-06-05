@@ -12,6 +12,8 @@ import { Observable, of } from 'rxjs';
 export class TaskListComponent implements OnInit {
 
   tasks: Task[] = [];
+  name: string;
+  description: string;
 
   constructor(
     private taskService: TasksService,
@@ -31,5 +33,17 @@ export class TaskListComponent implements OnInit {
 
   edit(task: Task) {
     this.taskService.setEditTask(task);
+  }
+
+  add() {
+    if (this.name && this.description) {
+      let id = this.taskService.getLength();
+      const task = new Task(id++, this.name, this.description, new Date());
+      this.taskService.addTask(task)
+        .subscribe(data => this.tasks = data);
+    }
+    this.name = '';
+    this.description = '';
+
   }
 }
