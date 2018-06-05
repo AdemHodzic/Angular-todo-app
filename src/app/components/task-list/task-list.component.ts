@@ -3,10 +3,33 @@ import { TasksService } from '../../service/tasks.service';
 import { Task } from '../../commons/models/task';
 import { tap } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
+import { trigger, transition, query, style, stagger, animate, keyframes, state } from '@angular/animations';
 @Component({
   selector: 'app-task-list',
   templateUrl: './task-list.component.html',
-  styleUrls: ['./task-list.component.css']
+  styleUrls: ['./task-list.component.css'],
+  animations: [
+    trigger('tasks', [
+      transition('* => *', [
+
+        query(':enter', style({ opacity: 0 }), {optional: true}),
+
+        query(':enter', stagger('300ms', [
+          animate('.6s ease-in', keyframes([
+            style({opacity: 0, transform: 'translateY(-75%)', offset: 0}),
+            style({opacity: .5, transform: 'translateY(35px)',  offset: 0.3}),
+            style({opacity: 1, transform: 'translateY(0)',     offset: 1.0}),
+          ]))]), {optional: true})
+          ,
+        query(':leave', stagger('300ms', [
+          animate('.6s ease-out', keyframes([
+            style({opacity: 1, transform: 'translateY(0)', offset: 0}),
+            style({opacity: .5, transform: 'translateY(35px)',  offset: 0.3}),
+            style({opacity: 0, transform: 'translateY(-75%)',     offset: 1.0}),
+          ]))]), {optional: true})
+      ])
+    ])
+  ]
 })
 export class TaskListComponent implements OnInit {
 
